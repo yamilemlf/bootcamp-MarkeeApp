@@ -1,14 +1,13 @@
-import styled, { css } from 'styled-components'
-
+import * as S from 'app-styles'
 function App () {
   return (
-    <Title>App</Title>
+    <S.Title>
+      App {' '}
+      <S.Span>texto do span</S.Span> {' '}
+      <S.SpanStyled>texto italico</S.SpanStyled>
+      <S.Span>texto do Spannn aquiii</S.Span>
+    </S.Title>
   )
 }
-
-const Title = styled.h1`${({ theme }) => css`
-  background: ${theme.colors.black};
-  color: ${theme.colors.primary};
-`}`
 
 export { App }
