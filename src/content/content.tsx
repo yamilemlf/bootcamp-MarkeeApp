@@ -5,13 +5,11 @@ function Content () {
     <ContentDiv>
       <TitleDiv>
         <FileImage src='file-text 1.png' alt='logo-arquivo' />
-        <TitleName>Título</TitleName>
+        <InputName defaultValue='Sem título' />
       </TitleDiv>
       <WritingArea>
-        <TextareaDiv>Textarea</TextareaDiv>
-        <MarkdownDiv>
-          markdown
-        </MarkdownDiv>
+        <Textarea placeholder='Digite aqui seu markdown' />
+        <Markdown />
       </WritingArea>
     </ContentDiv>
   )
@@ -32,25 +30,31 @@ height: 20px;
 margin-right: 10px;
 margin-left: 20px
 `
-const TitleName = styled.p`
-font-size: 18px;
+const InputName = styled.input`
+font-size: 16px;
+border: 0;
+color: #293445;
+outline: 0;
 `
 
 const WritingArea = styled.div`
 display: flex;
 height: 90%;
-
 `
 
-const TextareaDiv = styled.div`
+const Textarea = styled.textarea`
 width: 50%;
-border-right: 1px solid #E4E5E7;
 padding: 20px;
+border: 0;
+outline: 0;
+font-size: 14px;
+font-family: Inconsolata;
 `
 
-const MarkdownDiv = styled.div`
+const Markdown = styled.article`
 width: 50%;
 padding: 20px;
+border-left: 1px solid #E4E5E7;
 `
 
 export { Content }
