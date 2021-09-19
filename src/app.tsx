@@ -1,13 +1,20 @@
-import * as S from 'app-styles'
+import styled from 'styled-components/macro'
+import { Sidebar } from 'sidebar'
+import { Content } from 'content'
+
 function App () {
   return (
-    <S.Title>
-      App {' '}
-      <S.Span>texto do span</S.Span> {' '}
-      <S.SpanStyled>texto italico</S.SpanStyled>
-      <S.Span>texto do Spannn aquiii</S.Span>
-    </S.Title>
+    <Container>
+      <Sidebar />
+      <Content />
+    </Container>
   )
 }
+
+const Container = styled.div`
+display: flex;
+height: 100%;
+width: 100%;
+`
 
 export { App }

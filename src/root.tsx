@@ -20,10 +20,16 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 62.5%;
+    height: 100%;
   }
 
   body {
     font-family: 'DM Sans', sans-serif;
+    height: 100%;
+  }
+
+  [data-js="app"] {
+    height: 100%;
   }
 `
 
