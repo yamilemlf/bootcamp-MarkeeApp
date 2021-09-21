@@ -1,6 +1,26 @@
+import { useState, ChangeEvent } from 'react'
 import styled from 'styled-components/macro'
+import marked from 'marked'
+import 'highlight.js/styles/github.css'
+
+import('highlight.js').then(hljs => {
+  const h = hljs.default
+  marked.setOptions({
+    highlight: (code, language) => {
+      if (language && h.getLanguage(language)) {
+        return h.highlight(code, { language }).value
+      }
+      return h.highlightAuto(code).value
+    },
+  })
+})
 
 function Content () {
+  const [content, setContent] = useState('')
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value)
+  }
+
   return (
     <ContentDiv>
       <TitleDiv>
@@ -8,8 +28,8 @@ function Content () {
         <InputName defaultValue='Sem título' />
       </TitleDiv>
       <WritingArea>
-        <Textarea placeholder='Digite aqui seu markdown' />
-        <Markdown />
+        <Textarea placeholder='Digite aqui seu markdown' value={content} onChange={handleChange} />
+        <Markdown dangerouslySetInnerHTML={{ __html: marked(content) }} />
       </WritingArea>
     </ContentDiv>
   )
@@ -55,6 +75,8 @@ const Markdown = styled.article`
 width: 50%;
 padding: 20px;
 border-left: 1px solid #E4E5E7;
+font-size: 14px;
+font-family: Inconsolata;
 `
 
 export { Content }

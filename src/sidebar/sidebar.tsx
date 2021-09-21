@@ -32,6 +32,13 @@ const files: File[] = [
     active: true,
     status: 'saved',
   },
+  {
+    id: '3',
+    name: 'index.tsx',
+    content: 'Conteúdo do index.tsx',
+    active: true,
+    status: 'saving',
+  },
 ]
 
 function Sidebar () {
@@ -52,8 +59,9 @@ function Sidebar () {
               <FileImage src='file-text 1.png' alt='logo-arquivo' />
               <Anchor href={'/file/' + file.id}>{file.name}</Anchor>
               {!file.active && <DelButton>x</DelButton>}
-              {file.active && file.status === 'editing' && <ImgEditing src='Ellipse 1.png' alt='editing button' />}
-              {file.active && file.status === 'saved' && <ImgEditing src='Check.png' alt='check button' />}
+              {file.active && file.status === 'editing' && <ImgEditing src='Ellipse 1.png' alt='editing' />}
+              {file.active && file.status === 'saved' && <ImgEditing src='Check.png' alt='check' />}
+              {file.active && file.status === 'saving' && <ImgEditing src='Ellipse 2.png' alt='saving' />}
             </List>
           ))}
         </Ul>
