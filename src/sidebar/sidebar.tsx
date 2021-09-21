@@ -1,4 +1,6 @@
 import styled from 'styled-components/macro'
+import { useState } from 'react'
+import { v4 } from 'uuid'
 
 type Status = 'editing' | 'saving' | 'saved'
 
@@ -10,7 +12,7 @@ type File = {
   status: Status
 }
 
-const files: File[] = [
+/* const files: File[] = [
   {
     id: '0',
     name: 'sidebar.js',
@@ -39,9 +41,27 @@ const files: File[] = [
     active: true,
     status: 'saving',
   },
-]
+] */
 
 function Sidebar () {
+  const [files, setfiles] = useState<File[]>([])
+
+  function handleClick () {
+    setfiles(files => files
+      .map(file => ({
+        ...file,
+        active: false,
+      }))
+      .concat({
+        id: v4(),
+        name: 'Sem título',
+        content: '',
+        active: true,
+        status: 'saved',
+      }),
+    )
+  }
+
   return (
     <Aside>
       <Div>
@@ -50,7 +70,7 @@ function Sidebar () {
       </Div>
       <Hr />
       <Div>
-        <Button>+ Adicionar arquivo</Button>
+        <AddFileButton onClick={handleClick}>+ Adicionar arquivo</AddFileButton>
       </Div>
       <Div>
         <Ul>
@@ -112,7 +132,8 @@ padding-right: 155px;
 }
 `
 
-const Button = styled.button`
+const AddFileButton = styled.button`
+cursor: pointer;
 width: 250px;
 height: 34px;
 background: #1FC8E1;
@@ -162,6 +183,7 @@ font-size: 14px;
 `
 
 const DelButton = styled.button`
+cursor: pointer;
 color: #E4E5E7;
 background-color: transparent;
 border: 0;
